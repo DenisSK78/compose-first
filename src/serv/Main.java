@@ -16,7 +16,7 @@ public class Main {
 
     static class MyHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-            String response = String.format(LINK_BODY, SECOND_LINK, MAIN_LINK);
+            String response = String.format(LINK_BODY, FIRST_LINK, MAIN_LINK);
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
@@ -27,7 +27,7 @@ public class Main {
     private static void createServer(){
         HttpServer server = null;
         try {
-            server = HttpServer.create(new InetSocketAddress(9001), 0);
+            server = HttpServer.create(new InetSocketAddress(9002), 0);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,8 +38,8 @@ public class Main {
     }
 
     private static final String FIRST_LINK = "<p><a href='#' onclick='goTo(1)'>Open first link 9001</a></p>";
-    private static final String SECOND_LINK = "<p><a href='' onclick='goTo(2)'>Open second link 9002</a></p>";
-    private static final String MAIN_LINK = "<p><a href='' onclick='goTo(0)'>Open main link 9000</a></p>";
+    private static final String SECOND_LINK = "<p><a href='#' onclick='goTo(2)'>Open second link 9002</a></p>";
+    private static final String MAIN_LINK = "<p><a href='#' onclick='goTo(0)'>Open main link 9000</a></p>";
 
     private static final String LINK_BODY = "<!DOCTYPE HTML >\n" +
             "<html lang='html'>\n" +
@@ -48,7 +48,7 @@ public class Main {
             "    <title>Links</title>\n" +
             "</head>\n" +
             "<body>\n" +
-            "<h2>Links: </h2>\n" +
+            "<h2>Second page links: </h2>\n" +
             "%s\n" +
             "%s\n" +
             "</body>\n" +
